@@ -12,6 +12,7 @@ angular
   .module('benefitsApp', [
     'ngRoute',
     'ngSanitize',
+    'ui.bootstrap',
     'angularSoap'
   ])
   .config(function ($routeProvider) {
