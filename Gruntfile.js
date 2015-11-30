@@ -25,6 +25,12 @@ module.exports = function (grunt) {
     app: require('./bower.json').appPath || 'app',
     dist: 'dist'
   };
+
+  var soap = require('soap');
+  var url = require('url');
+  var zipUrl = 'http://www.webservicex.net/uszip.asmx?wsdl';
+
+
   var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -91,7 +97,21 @@ module.exports = function (grunt) {
                 '/app/styles',
                 connect.static('./app/styles')
               ),
-              connect.static(appConfig.app)
+              connect.static(appConfig.app),
+              function(req, res, next) {
+                if(req.url.indexOf('/zip') === 0) {
+                  var data = url.parse(req.url, true);
+                  var method = req.url.match(/^\/zip\/([^#?]*)/)[1];
+                  soap.createClient(zipUrl, function(err, client) {
+                      client[method](data.query, function(err, result) {
+                          res.writeHead(200, { 'Content-Type': 'application/json' });
+                          res.write(JSON.stringify(result));
+                          res.end();
+                          next();
+                      });
+                  });
+                }
+              }
             ];
           }
         },
