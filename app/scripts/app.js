@@ -13,11 +13,13 @@ angular
     'ngRoute',
     'ngSanitize',
     'ui.bootstrap',
-    'angularSoap'
+    'angularSoap',
+    'ngMessages'
+
   ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
+      .when('/home', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
@@ -38,6 +40,6 @@ angular
         controllerAs: 'address'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/register'
       });
   });

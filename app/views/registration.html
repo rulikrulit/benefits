@@ -1,31 +1,59 @@
-<form role="form"> 
+<form role="form" name="form_registration" id="form_registration"> 
   <div class="form-group has-feedback">
-    <label class="control-label">Username</label>
-    <input type="text" class="form-control" placeholder="Username" />
+    <label class="control-label" for="registration_username">Username</label>
+    <input type="text" class="form-control" placeholder="Username" name="registration_username" id="registration_username" ng-model="registration.username" required>
     <i class="form-control-feedback glyphicon glyphicon-user"></i>
+    <div ng-messages="form_registration.registration_username.$error" style="color:maroon" ng-show="form_registration.registration_username.$touched" role="alert">
+      <div ng-message="required">You did not enter a field</div>
+    </div>
   </div>
   <div class="form-group has-feedback">
-    <label class="control-label">Old password</label>
-    <input type="text" class="form-control" placeholder="******" />
+    <label class="control-label" for="registration_password-old">Old password</label>
+    <input type="password" class="form-control" placeholder="******" name="registration_password-old" id="registration_password-old" ng-model="registration.passwordOld" required minlength=7>
     <i class="form-control-feedback glyphicon glyphicon-lock"></i>
+    <div ng-messages="form_registration['registration_password-old'].$error" style="color:maroon" ng-show="form_registration['registration_password-old'].$touched" role="alert">
+      <div ng-message="required">You did not enter a field</div>
+      <div ng-message="minlength">Password can't be shorter than 7 symbols</div>
+    </div>
+
   </div>
   <div class="form-group has-feedback">
-    <label class="control-label">New password</label>
-    <input type="text" class="form-control" placeholder="******" />
+    <label class="control-label" for="registration_password-new">New password</label>
+    <input type="password" class="form-control" placeholder="******" name="registration_password-new" id="registration_password-new" ng-model="registration.passwordNew" required minlength=7>
     <i class="form-control-feedback glyphicon glyphicon-lock"></i>
+    <div ng-messages="form_registration['registration_password-new'].$error" style="color:maroon" ng-show="form_registration['registration_password-new'].$touched" role="alert">
+      <div ng-message="required">You did not enter a field</div>
+      <div ng-message="minlength">Password can't be shorter than 7 symbols</div>
+    </div>
+
   </div>
   <div class="form-group has-feedback">
-    <label class="control-label">Confirm password</label>
-    <input type="text" class="form-control" placeholder="******" />
+    <label class="control-label" for="registration_password-comfirm">Confirm password</label>
+    <input type="password" class="form-control" placeholder="******" name="registration_password-comfirm" id="registration_password-comfirm" ng-model="registration.passwordComfirm" required minlength=7 conformity="registration.passwordNew">
     <i class="form-control-feedback glyphicon glyphicon-ok"></i>
+    <div ng-messages="form_registration['registration_password-comfirm'].$error" style="color:maroon" ng-show="form_registration['registration_password-comfirm'].$touched" role="alert">
+      <div ng-message="required">You did not enter a field</div>
+      <div ng-message="minlength">Password can't be shorter than 7 symbols</div>
+      <div ng-message="conformity">Password doesn't match</div>
+    </div>
+
   </div>
   <div class="form-group has-feedback">
-    <label class="control-label">Date of birth</label>
-    <p class="input-group">
-      <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+    <label class="control-label" for="registration_birthday">Date of birth</label>
+    <div class="input-group">
+      <input type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="status.opened" min-date="minDate" max-date="maxDate" date-disabled="disabled(date, mode)" datepicker-mode="'year'" close-text="Close" name="registration_birthday" id="registration_birthday" ng-model="registration.birthday" date required>
       <span class="input-group-btn">
         <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
       </span>
-    </p>
+    </div>
+    <div ng-messages="form_registration.registration_birthday.$error" style="color:maroon" ng-show="form_registration.registration_birthday.$touched" role="alert">
+      <div ng-message="required">You did not enter a field</div>
+      <div ng-message="date">Invalid date format. Should be <em>mm.dd.yyyy</em></div>
+    </div>
   </div>
+  <div class="form-group">
+    <button class="btn btn-danger">Cancel</button>
+    <button class="btn btn-success" type="submit">Submit</button>
+  </div>
+
 </form>
