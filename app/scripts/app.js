@@ -32,6 +32,11 @@ angular
         controller: 'RegistrationCtrl',
         controllerAs: 'registration'
       })
+      .when('/address', {
+        templateUrl: 'views/address.html',
+        controller: 'AddressCtrl',
+        controllerAs: 'address'
+      })
       .otherwise({
         redirectTo: '/'
       });

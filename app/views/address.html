@@ -1,0 +1,36 @@
+<form role="form" name="form_address" id="form_address">
+  <div class="form-group has-feedback">
+    <label class="control-label" for="" for="address_address">Address<span class="required-mark"> *</span></label>
+    <input type="text" class="form-control" placeholder="Address" name="address_address" id="address_address" ng-model="address.address" required>
+    <i class="form-control-feedback glyphicon glyphicon-home"></i>
+  </div>
+  <div class="form-group has-feedback">
+    <label class="control-label" for="address_zip">Zip code<span class="required-mark"> *</span></label>
+    <input type="text" class="form-control" placeholder="zip code" name="address_zip" id="address_zip" ng-model="address.zip" ng-change="checkZip()" required>
+    <i class="form-control-feedback glyphicon glyphicon-map-marker"></i>
+  </div>
+  <div class="form-group has-feedback">
+    <label class="control-label" for="address_city">City<span class="required-mark"> *</span></label>
+    <input type="text" class="form-control" placeholder="city" name="address_city" id="address_city" ng-model="address.city" readonly="readonly" required>
+    <i class="form-control-feedback glyphicon glyphicon-map-marker"></i>
+  </div>
+  <div class="form-group has-feedback">
+    <label class="control-label" for="address_state">State<span class="required-mark"> *</span></label>
+    <input type="text" class="form-control" placeholder="state" name="address_state" id="address_state" ng-model="address.state" readonly="readonly" required>
+    <i class="form-control-feedback glyphicon glyphicon-map-marker"></i>
+  </div>
+  <div class="form-group has-feedback">
+    <label class="control-label" for="address_home-phone">Home phone number</label>
+    <input type="text" class="form-control" placeholder="home phone number" name="address_home-phone" id="address_home-phone" ng-model="address.homePhone">
+    <i class="form-control-feedback glyphicon glyphicon-phone-alt"></i>
+  </div>
+  <div class="form-group has-feedback">
+    <label class="control-label" for="address_cell-phone">Cell phone number</label>
+    <input type="text" class="form-control" placeholder="cell phone number" name="address_cell-phone" id="address_cell-phone" ng-model="address.cellPhone">
+    <i class="form-control-feedback glyphicon glyphicon-phone"></i>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-danger">Cancel</button>
+    <button class="btn btn-success" type="submit">Submit</button>
+  </div>
+</form>
