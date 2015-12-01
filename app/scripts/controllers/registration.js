@@ -8,7 +8,7 @@
  * Controller of the benefitsApp
  */
 angular.module('benefitsApp')
-  .controller('RegistrationCtrl', ['zip', '$scope', function (zip, $scope) {
+  .controller('RegistrationCtrl', ['$scope', function ($scope) {
      $scope.today = function() {
       $scope.dt = new Date();
     };
