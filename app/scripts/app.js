@@ -19,7 +19,7 @@ angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/home', {
+      .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
@@ -40,6 +40,6 @@ angular
         controllerAs: 'address'
       })
       .otherwise({
-        redirectTo: '/register'
+        redirectTo: '/'
       });
   });

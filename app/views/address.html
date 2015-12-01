@@ -10,11 +10,12 @@
   </div>
   <div class="form-group has-feedback">
     <label class="control-label" for="address_zip">Zip code<span class="required-mark"> *</span></label>
-    <input type="text" class="form-control" placeholder="zip code" name="address_zip" id="address_zip" ng-model="address.zip" ng-change="checkZip()" required zipcode>
+    <input type="text" class="form-control" placeholder="zip code" name="address_zip" id="address_zip" ng-model="address.zip" ng-change="checkZip()" zipcode required>
     <i class="form-control-feedback glyphicon glyphicon-map-marker"></i>
     <div ng-messages="form_address.address_zip.$error" style="color:maroon" ng-show="form_address.address_zip.$touched" role="alert">
       <div ng-message="required">You did not enter a field</div>
-      <div ng-message="zipcode">Invalid zip format. Should be 5-digital symbols</div>
+      <div ng-message="zipcode">Invalid zip format. Should be 5-digit number</div>
+      <div ng-message="existingZip">There is no location found. Please, double check the zip code</div>
     </div>
 
   </div>
@@ -29,7 +30,7 @@
     <i class="form-control-feedback glyphicon glyphicon-map-marker"></i>
   </div>
   <div class="form-group has-feedback">
-    <label class="control-label" for="address_cell-phone">Cell phone number</label>
+    <label class="control-label" for="address_cell-phone">Cell phone number<span class="required-mark"> *</span></label>
     <input type="text" class="form-control" placeholder="cell phone number" name="address_cell-phone" id="address_cell-phone" ng-model="address.cellPhone" required>
     <i class="form-control-feedback glyphicon glyphicon-phone"></i>
     <div ng-messages="form_address['address_cell-phone'].$error" style="color:maroon" ng-show="form_address['address_cell-phone'].$touched" role="alert">

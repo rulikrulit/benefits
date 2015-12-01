@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="benefitsApp">
+  <body ng-app="benefitsApp" ng-controller="AppCtrl">
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -39,9 +39,9 @@
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="#/about">About</a></li>
-              <li><a ng-href="#/">Contact</a></li>
+              <li ng-class="getClass('/')"><a href="#/">Home</a></li>
+              <li ng-class="getClass('/register')"><a ng-href="#/register">Registration</a></li>
+              <li ng-class="getClass('/address')"><a ng-href="#/address">Edit address</a></li>
             </ul>
           </div>
         </div>
@@ -54,7 +54,6 @@
 
     <div class="footer">
       <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
       </div>
     </div>
 
@@ -83,6 +82,7 @@
         <script src="scripts/directives/zipcode.js"></script>
         <script src="scripts/directives/conformity.js"></script>
         <script src="scripts/directives/date.js"></script>
+        <script src="scripts/controllers/app.js"></script>
         <!-- endbuild -->
 </body>
 </html>
