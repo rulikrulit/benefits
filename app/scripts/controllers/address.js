@@ -8,7 +8,7 @@
  * Controller of the benefitsApp
  */
 angular.module('benefitsApp')
-  .controller('AddressCtrl', ['$scope', 'wsdl', function ($scope, wsdl) {
+  .controller('AddressCtrl', ['$scope', '$rootScope', '$location', 'wsdl', function ($scope, $rootScope, $location, wsdl) {
     $scope.addressFound = false;
     $scope.checkZip = function() {
       if ($scope.address && $scope.address.zip && $scope.address.zip.match(/^\d{5}$/)) {
@@ -39,6 +39,16 @@ angular.module('benefitsApp')
         $scope.checkZip();
       }
     });
+
+    $scope.submitAddress = function() {
+      if ($scope.form_address.$valid) {
+        $rootScope.$broadcast('setAlert', 'You address is updated');
+        $location.path('/benefits');
+      } else {
+        $rootScope.$broadcast('setAlert', 'Please, fill in the form correctly', 'error');
+      }
+    };
+
 
     // wsdl('app', 'Echo', {data: {echo: 'hi'}});
     // wsdl('app', 'GetOwnerPolicies');

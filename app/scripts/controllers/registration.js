@@ -8,7 +8,7 @@
  * Controller of the benefitsApp
  */
 angular.module('benefitsApp')
-  .controller('RegistrationCtrl', ['$scope', function ($scope) {
+  .controller('RegistrationCtrl', ['$scope', '$rootScope', '$location', function ($scope, $rootScope, $location) {
 
     $scope.maxDate = new Date();
 
@@ -25,6 +25,15 @@ angular.module('benefitsApp')
 
     $scope.status = {
       opened: false
+    };
+
+    $scope.submitRegister = function() {
+      if ($scope.form_registration.$valid) {
+        $rootScope.$broadcast('setAlert', 'You are successfully registered');
+        $location.path('/benefits');
+      } else {
+        $rootScope.$broadcast('setAlert', 'Please, fill in the form correctly', 'error');
+      }
     };
 
   }]);

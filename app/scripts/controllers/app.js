@@ -16,5 +16,24 @@ angular.module('benefitsApp')
       } else {
         return '';
       }
-    }
+    };
+
+    $scope.$on('setAlert', function(e, message, type) {
+      $scope.alertMessage = message;
+
+      switch (type) {
+        case 'error':
+          $scope.alertClass = 'danger';
+          break;
+        case 'warning':
+          $scope.alertClass = 'info';
+          break;
+        default:
+          $scope.alertClass = 'success';
+      }
+    });
+
+    $scope.clearAlert = function() {
+      $scope.alertMessage = false;
+    };
   }]);

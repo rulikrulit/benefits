@@ -1,8 +1,11 @@
-<p ng-show="ownerReady">
-  Hello, {{owner.FirstName}} {{owner.LastName}}.
-  Your Last4SS is {{owner.Last4SS}}.
-</p>
-<table ng-show="benefitReady">
+<h1 class="page-title">Benenits info</h1>
+<div class="panel panel-default" ng-show="ownerReady">
+  <div class="panel-body">
+    Hello, {{owner.FirstName}} {{owner.LastName}}.
+    Your Last4SS is {{owner.Last4SS}}.
+  </div>
+</div>
+<table class="table table-hover" ng-show="benefitReady">
   <tr>
     <td>
       DeductionAmount
@@ -101,15 +104,23 @@
   </tr>
 </table>
 <div ng-hide="benefitReady">Loading benefit...</div>
-<table ng-show="benefitPaymentsReady">
-  <tr>
-    <th>Amount</th>
-    <th>Date</th>
-    <th>Type</th>
-  </tr>
-  <tr ng-repeat="payment in benefitPayments">
-    <td>{{payment.PaymentAmount}}</td>
-    <td>{{payment.PaymentDate | date:'MM/dd/yyyy HH:mm'}}</td>
-    <td>{{payment.Type}}</td>
-  </tr>
-</table>
+<div ng-show="benefitReady && !benefitPaymentsReady">Loading payment info...</div>
+<section ng-show="benefitPaymentsReady">
+  <h2>Payment info</h2>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Amount</th>
+        <th>Date</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="payment in benefitPayments">
+        <td>{{payment.PaymentAmount}}</td>
+        <td>{{payment.PaymentDate | date:'MM/dd/yyyy HH:mm'}}</td>
+        <td>{{payment.Type}}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
