@@ -1,3 +1,12 @@
+<div class="panel panel-default">
+  <div class="panel-body" ng-show="addressFound">
+    <p>Address: <span>{{addressData.Address1}}</span>, <span>{{addressData.AddressCity}}</span>, <span>{{addressData.AddressState}}</span></p>
+    <p>Zip: {{addressData.AddressZip}}</p>
+  </div>
+  <div class="panel-body" ng-hide="addressFound">
+    Checking your current address...
+  </div>
+</div>
 <form role="form" name="form_address" id="form_address">
   <div class="form-group has-feedback">
     <label class="control-label" for="address_address">Address<span class="required-mark"> *</span></label>

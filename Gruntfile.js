@@ -29,6 +29,7 @@ module.exports = function (grunt) {
   var soap = require('soap');
   var url = require('url');
   var zipUrl = 'http://www.webservicex.net/uszip.asmx?wsdl';
+  var appUrl = 'http://test.m3tech.com:8080/TestDeploy/WebService1.asmx?wsdl';
 
 
   var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
@@ -99,9 +100,23 @@ module.exports = function (grunt) {
               ),
               connect.static(appConfig.app),
               function(req, res, next) {
-                if(req.url.indexOf('/zip') === 0) {
-                  var data = url.parse(req.url, true);
-                  var method = req.url.match(/^\/zip\/([^#?]*)/)[1];
+                var data, method;
+                if(req.url.indexOf('/app') === 0) {
+                  data = url.parse(req.url, true);
+                  method = req.url.match(/^\/app\/([^#?]*)/)[1];
+                  soap.createClient(appUrl, function(err, client) {
+                      console.log('got client');
+                      client[method](data.query, function(err, result) {
+                          console.log('got result', err, result);
+                          res.writeHead(200, { 'Content-Type': 'application/json' });
+                          res.write(JSON.stringify(result));
+                          res.end();
+                          next();
+                      });
+                  });
+                } else if(req.url.indexOf('/zip') === 0) {
+                  data = url.parse(req.url, true);
+                  method = req.url.match(/^\/zip\/([^#?]*)/)[1];
                   soap.createClient(zipUrl, function(err, client) {
                       client[method](data.query, function(err, result) {
                           res.writeHead(200, { 'Content-Type': 'application/json' });

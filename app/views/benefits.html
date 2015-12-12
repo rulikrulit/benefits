@@ -1,0 +1,12 @@
+<p ng-hide="ownerReady || addressFound">Loading...</p>
+<p ng-show="ownerReady">
+  Hello, {{owner.FirstName}} {{owner.LastName}}.
+  Your Last4SS is {{owner.Last4SS}}.
+</p>
+<div class="panel panel-default" ng-show="addressFound">
+  <div class="panel-body">
+    <p>Address: <span>{{addressData.Address1}}</span>, <span>{{addressData.AddressCity}}</span>, <span>{{addressData.AddressState}}</span></p>
+    <p>Zip: {{addressData.AddressZip}}</p>
+    <a href="#/address">Edit</a>
+  </div>
+</div>

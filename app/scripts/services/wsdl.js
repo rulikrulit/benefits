@@ -12,19 +12,36 @@ angular.module('benefitsApp')
   .service('wsdl', ['$http', '$q', '$rootScope', function($http, $q, $rootScope){
 
     //var request = 'http://localhost:9001/zip/GetInfoByZIP?USZip=53405';
-    var zipWsdlDomain = 'http://localhost:9001/zip/',
-      urlList = {
-        GetInfoByZIP: {
-          url: zipWsdlDomain + 'GetInfoByZIP',
-          method: 'GET'
-        }
+    // var zipWsdlDomain = 'http://localhost:9001/zip/',
+    //   appDomain = 'http://localhost:9001/app/';
+      // urlList = {
+      //   GetInfoByZIP: {
+      //     url: zipWsdlDomain + 'GetInfoByZIP',
+      //     method: 'GET'
+      //   },
+      //   Echo: {
+      //     url: appDomain + 'Echo',
+      //     method: 'GET'
+      //   },
+      //   HelloService: {
+      //     url: appDomain + 'HelloService',
+      //     method: 'GET'
+      //   }
 
+      // };
+
+      var sourceDomains = {
+        app: 'http://localhost:9001/app/',
+        zip: 'http://localhost:9001/zip/'
       };
 
-    return function(action, requestData) {
+    return function(source, action, requestData) {
       var request = {},
         deferred = $q.defer();
-      angular.copy(urlList[action], request);
+      angular.copy({
+        url: sourceDomains[source] + action,
+        method: 'GET'
+      }, request);
       if (!request) {
         console.error('wsdl service: ' + action + ' is not set yet');
         deferred.reject();

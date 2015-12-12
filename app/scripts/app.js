@@ -34,10 +34,25 @@ angular
         controller: 'RegistrationCtrl',
         controllerAs: 'registration'
       })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl',
+        controllerAs: 'login'
+      })
       .when('/address', {
         templateUrl: 'views/address.html',
         controller: 'AddressCtrl',
         controllerAs: 'address'
+      })
+      .when('/benefits', {
+        templateUrl: 'views/benefits.html',
+        controller: 'BenefitsCtrl',
+        controllerAs: 'benefits'
+      })
+      .when('/benefit', {
+        templateUrl: 'views/benefit.html',
+        controller: 'BenefitCtrl',
+        controllerAs: 'benefit'
       })
       .otherwise({
         redirectTo: '/'
