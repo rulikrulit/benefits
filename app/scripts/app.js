@@ -2,18 +2,19 @@
 
 /**
  * @ngdoc overview
- * @name benefitsApp
+ * @name PoliciesApp
  * @description
- * # benefitsApp
+ * # PoliciesApp
  *
  * Main module of the application.
  */
 angular
-  .module('benefitsApp', [
+  .module('PoliciesApp', [
     'ngRoute',
     'ngSanitize',
     'ui.bootstrap',
     'angularSoap',
+    'ngCookies',
     'ngMessages'
 
   ])
@@ -44,15 +45,15 @@ angular
         controller: 'AddressCtrl',
         controllerAs: 'address'
       })
-      .when('/benefits', {
-        templateUrl: 'views/benefits.html',
-        controller: 'BenefitsCtrl',
-        controllerAs: 'benefits'
+      .when('/policies', {
+        templateUrl: 'views/policies.html',
+        controller: 'PoliciesCtrl',
+        controllerAs: 'policies'
       })
-      .when('/benefit', {
-        templateUrl: 'views/benefit.html',
-        controller: 'BenefitCtrl',
-        controllerAs: 'benefit'
+      .when('/policy/:id', {
+        templateUrl: 'views/policy.html',
+        controller: 'PolicyCtrl',
+        controllerAs: 'policy'
       })
       .otherwise({
         redirectTo: '/'

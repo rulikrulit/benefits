@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name benefitsApp.directive:zipcode
+ * @name PoliciesApp.directive:zipcode
  * @description
  * # zipcode
  */
-angular.module('benefitsApp')
+angular.module('PoliciesApp')
   .directive('zipcode', function () {
     return {
         require: 'ngModel',

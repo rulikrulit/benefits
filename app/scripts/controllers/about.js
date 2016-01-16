@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc function
- * @name benefitsApp.controller:AboutCtrl
+ * @name PoliciesApp.controller:AboutCtrl
  * @description
  * # AboutCtrl
- * Controller of the benefitsApp
+ * Controller of the PoliciesApp
  */
-angular.module('benefitsApp')
+angular.module('PoliciesApp')
   .controller('AboutCtrl', function () {
   });

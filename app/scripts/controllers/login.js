@@ -2,17 +2,43 @@
 
 /**
  * @ngdoc function
- * @name benefitsApp.controller:LoginCtrl
+ * @name PoliciesApp.controller:LoginCtrl
  * @description
  * # LoginCtrl
- * Controller of the benefitsApp
+ * Controller of the PoliciesApp
  */
-angular.module('benefitsApp')
-  .controller('LoginCtrl', ['$scope', '$rootScope', '$location', function ($scope, $rootScope, $location) {
+angular.module('PoliciesApp')
+  .controller('LoginCtrl', ['$scope', '$rootScope', '$location', '$cookies', 'wsdl', function ($scope, $rootScope, $location, $cookies, wsdl) {
     $scope.submitLogin = function() {
       if ($scope.form_login.$valid) {
-        $rootScope.$broadcast('setAlert', 'You are successfully logged in');
-        $location.path('/benefits');
+        wsdl('app', 'IsUserAuthenticated', {
+          data: {
+            user: {
+              UserName: $scope.login.username,
+              UserPassword: $scope.login.passwordOld
+            }
+          }
+        }).then(function(response){
+          console.log('login', response);
+          $rootScope.$broadcast('setAlert', 'You are successfully logged in');
+          $rootScope.user = {
+            UserName: $scope.login.username,
+            UserPassword: $scope.login.passwordOld
+          };
+          $cookies.put('login', $scope.login.username);
+          $cookies.put('pass', $scope.login.passwordOld);
+          $location.path('/policies');
+          wsdl('app', 'GetPolicyOwnerPersonalInfo', {
+            data: {
+              user: $rootScope.user
+            }
+          }).then(function(response){
+            $rootScope.owner = response.data.GetPolicyOwnerPersonalInfoResult;
+            console.log('owner', $rootScope.owner);
+          });
+
+        });
+
       } else {
         $rootScope.$broadcast('setAlert', 'Please, fill in the form correctly', 'error');
       }

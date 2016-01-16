@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name benefitsApp.controller:AddressCtrl
+ * @name PoliciesApp.controller:AddressCtrl
  * @description
  * # AddressCtrl
- * Controller of the benefitsApp
+ * Controller of the PoliciesApp
  */
-angular.module('benefitsApp')
+angular.module('PoliciesApp')
   .controller('AddressCtrl', ['$scope', '$rootScope', '$location', 'wsdl', function ($scope, $rootScope, $location, wsdl) {
     $scope.addressFound = false;
     $scope.checkZip = function() {
@@ -30,7 +30,11 @@ angular.module('benefitsApp')
       }
     };
 
-    wsdl('app', 'GetPolicyOwnerAddressInfo').then(function(response){
+    wsdl('app', 'GetPolicyOwnerAddressInfo',{
+      data: {
+        user: $rootScope.user
+      }
+    }).then(function(response){
       if (response.data && response.data.GetPolicyOwnerAddressInfoResult && response.data.GetPolicyOwnerAddressInfoResult.Address) {
         $scope.addressData = response.data.GetPolicyOwnerAddressInfoResult.Address[0];
         $scope.addressFound = true;
@@ -43,7 +47,7 @@ angular.module('benefitsApp')
     $scope.submitAddress = function() {
       if ($scope.form_address.$valid) {
         $rootScope.$broadcast('setAlert', 'You address is updated');
-        $location.path('/benefits');
+        $location.path('/policies');
       } else {
         $rootScope.$broadcast('setAlert', 'Please, fill in the form correctly', 'error');
       }

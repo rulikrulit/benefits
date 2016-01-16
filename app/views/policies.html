@@ -1,4 +1,4 @@
-<h1 class="page-title">Benenits</h1>
+<h1 class="page-title">Policies</h1>
 <p ng-hide="ownerReady || addressFound">Loading...</p>
 <p ng-show="ownerReady">
   Hello, {{owner.FirstName}} {{owner.LastName}}.
@@ -11,3 +11,24 @@
     <a href="#/address">Edit</a>
   </div>
 </div>
+<table class="table table-hover" ng-show="policyReady">
+  <tr>
+    <th>ID</th>
+    <th>Status</th>
+    <th>Type</th>
+    <th>Amount</th>
+  <tr ng-repeat="policy in policies" class="pointer" ng-click="openPolicy(policy.PolicyID)">
+    <td>
+     {{policy.PolicyID}}
+    </td>
+    <td>
+     {{policy.Status}}
+    </td>
+    <td>
+     {{policy.DeductionType}}
+    </td>
+    <td>
+     {{policy.DeductionAmount}}
+    </td>
+  </tr>
+</table>

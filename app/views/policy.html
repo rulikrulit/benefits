@@ -5,13 +5,13 @@
     Your Last4SS is {{owner.Last4SS}}.
   </div>
 </div>
-<table class="table table-hover" ng-show="benefitReady">
+<table class="table table-hover" ng-show="policyReady">
   <tr>
     <td>
       DeductionAmount
     </td>
     <td>
-     {{benefit.DeductionAmount}}
+     {{policy.DeductionAmount}}
     </td>
   </tr>
   <tr>
@@ -19,7 +19,7 @@
       DeductionMode
     </td>
     <td>
-     {{benefit.DeductionMode}}
+     {{policy.DeductionMode}}
     </td>
   </tr>
   <tr>
@@ -27,7 +27,7 @@
       DeductionType
     </td>
     <td>
-     {{benefit.DeductionType}}
+     {{policy.DeductionType}}
     </td>
   </tr>
   <tr>
@@ -35,7 +35,7 @@
       LastPaymentAmount
     </td>
     <td>
-     {{benefit.LastPaymentAmount}}
+     {{policy.LastPaymentAmount}}
     </td>
   </tr>
   <tr>
@@ -43,7 +43,7 @@
       PolicyCoverage
     </td>
     <td>
-     {{benefit.PolicyCoverage}}
+     {{policy.PolicyCoverage}}
     </td>
   </tr>
   <tr>
@@ -51,7 +51,7 @@
       PolicyEffDate
     </td>
     <td>
-     {{benefit.PolicyEffDate | date:'MM/dd/yyyy HH:mm'}}
+     {{policy.PolicyEffDate | date:'MM/dd/yyyy HH:mm'}}
     </td>
   </tr>
   <tr>
@@ -59,7 +59,7 @@
       PolicyID
     </td>
     <td>
-     {{benefit.PolicyID}}
+     {{policy.PolicyID}}
     </td>
   </tr>
   <tr>
@@ -67,7 +67,7 @@
       PolicyProductName
     </td>
     <td>
-     {{benefit.PolicyProductName}}
+     {{policy.PolicyProductName}}
     </td>
   </tr>
   <tr>
@@ -75,7 +75,7 @@
       PolicySubscriberName
     </td>
     <td>
-     {{benefit.PolicySubscriberName}}
+     {{policy.PolicySubscriberName}}
     </td>
   </tr>
   <tr>
@@ -83,7 +83,7 @@
       PolicyWeeklyPremium
     </td>
     <td>
-     {{benefit.PolicyWeeklyPremium}}
+     {{policy.PolicyWeeklyPremium}}
     </td>
   </tr>
   <tr>
@@ -91,7 +91,7 @@
       Status
     </td>
     <td>
-     {{benefit.Status}}
+     {{policy.Status}}
     </td>
   </tr>
   <tr>
@@ -99,13 +99,13 @@
       Type
     </td>
     <td>
-     {{benefit.Type}}
+     {{policy.Type}}
     </td>
   </tr>
 </table>
-<div ng-hide="benefitReady">Loading benefit...</div>
-<div ng-show="benefitReady && !benefitPaymentsReady">Loading payment info...</div>
-<section ng-show="benefitPaymentsReady">
+<div ng-hide="policyReady">Loading policy...</div>
+<div ng-show="policyReady && !policyPaymentsReady">Loading payment info...</div>
+<section ng-show="policyPaymentsReady">
   <h2>Payment info</h2>
   <table class="table table-hover">
     <thead>
@@ -116,7 +116,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="payment in benefitPayments">
+      <tr ng-repeat="payment in policyPayments">
         <td>{{payment.PaymentAmount}}</td>
         <td>{{payment.PaymentDate | date:'MM/dd/yyyy HH:mm'}}</td>
         <td>{{payment.Type}}</td>

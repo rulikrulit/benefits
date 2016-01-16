@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name benefitsApp.directive:date
+ * @name PoliciesApp.directive:date
  * @description
  * # date
  */
-angular.module('benefitsApp')
+angular.module('PoliciesApp')
   .directive('date', function () {
     return {
         require: 'ngModel',

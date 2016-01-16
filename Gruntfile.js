@@ -106,7 +106,13 @@ module.exports = function (grunt) {
                   method = req.url.match(/^\/app\/([^#?]*)/)[1];
                   soap.createClient(appUrl, function(err, client) {
                       console.log('got client');
-                      client[method](data.query, function(err, result) {
+                      client[method](JSON.parse(data.query.data), function(err, result) {
+                      // client[method]({
+                      //   user: {
+                      //     UserName: 'Boris@M3tech.com',
+                      //     UserPassword: 'b569d2dc'
+                      //   }
+                      // }, function(err, result) {
                           console.log('got result', err, result);
                           res.writeHead(200, { 'Content-Type': 'application/json' });
                           res.write(JSON.stringify(result));

@@ -2,13 +2,15 @@
 
 /**
  * @ngdoc function
- * @name benefitsApp.controller:AppCtrl
+ * @name PoliciesApp.controller:AppCtrl
  * @description
  * # AppCtrl
- * Controller of the benefitsApp
+ * Controller of the PoliciesApp
  */
-angular.module('benefitsApp')
-  .controller('AppCtrl', ['$scope', '$location', function ($scope, $location) {
+angular.module('PoliciesApp')
+  .controller('AppCtrl', ['$rootScope', '$scope', '$location', '$cookies', '$uibModal', 'wsdl', function ($rootScope, $scope, $location, $cookies, $uibModal, wsdl) {
+
+    $rootScope.user = null;
 
     $scope.getClass = function (path) {
       if ($location.path() === path) {
@@ -17,20 +19,55 @@ angular.module('benefitsApp')
         return '';
       }
     };
+    var login = $cookies.get('login'),
+      pass = $cookies.get('pass');
+
+    if (pass && login) {
+      $rootScope.user = {
+        UserName: login,//'Boris@M3tech.com',
+        UserPassword: pass//'b569d2dc'
+      };
+      wsdl('app', 'GetPolicyOwnerPersonalInfo', {
+        data: {
+          user: $rootScope.user
+        }
+      }).then(function(response){
+        $rootScope.owner = response.data.GetPolicyOwnerPersonalInfoResult;
+        console.log('owner', $rootScope.owner);
+      });
+
+    }
+
+    $rootScope.logout = function() {
+      login = $cookies.put('login', '');
+      pass = $cookies.put('pass', '');
+
+      $rootScope.user = null;
+      $rootScope.owner = null;
+      $rootScope.$broadcast('setAlert', 'You have logged out successfully');
+
+      $location.path('/login');
+    };
+
 
     $scope.$on('setAlert', function(e, message, type) {
-      $scope.alertMessage = message;
-
-      switch (type) {
-        case 'error':
-          $scope.alertClass = 'danger';
-          break;
-        case 'warning':
-          $scope.alertClass = 'info';
-          break;
-        default:
-          $scope.alertClass = 'success';
+      var modalInstance;
+      type = type || 'success';
+      if (type === 'error') {
+        type = 'danger';
       }
+      modalInstance = $uibModal.open({
+        templateUrl: 'views/alert-message.html',
+        controller: 'alertMessageCtrl',
+        size: 'sm',
+        windowClass: 'modal-alert',
+        resolve: {
+          alert: {
+            message: message,
+            type: type
+          }
+        }
+      });
     });
 
     $scope.clearAlert = function() {

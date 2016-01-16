@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name benefitsApp.directive:conformity
+ * @name PoliciesApp.directive:conformity
  * @description
  * # conformity
  */
-angular.module('benefitsApp')
+angular.module('PoliciesApp')
   .directive('conformity', function () {
     return {
         require: "ngModel",

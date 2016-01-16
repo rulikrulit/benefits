@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name benefitsApp.controller:RegistrationCtrl
+ * @name PoliciesApp.controller:RegistrationCtrl
  * @description
  * # RegistrationCtrl
- * Controller of the benefitsApp
+ * Controller of the PoliciesApp
  */
-angular.module('benefitsApp')
-  .controller('RegistrationCtrl', ['$scope', '$rootScope', '$location', function ($scope, $rootScope, $location) {
+angular.module('PoliciesApp')
+  .controller('RegistrationCtrl', ['$scope', '$rootScope', '$location', 'wsdl', function ($scope, $rootScope, $location, wsdl) {
 
     $scope.maxDate = new Date();
 
@@ -21,16 +21,46 @@ angular.module('benefitsApp')
     };
 
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'MM.dd.yyyy', 'shortDate'];
-    $scope.format = $scope.formats[2];
+    $scope.format = 'MM/dd/yyyy';
 
     $scope.status = {
       opened: false
     };
-
     $scope.submitRegister = function() {
       if ($scope.form_registration.$valid) {
-        $rootScope.$broadcast('setAlert', 'You are successfully registered');
-        $location.path('/benefits');
+        wsdl('app', 'RegisterNewUser', {
+          data: {
+            // 'user[UserName]':'Boris@M3tech.com',BORIS@M3TECH.COM //boris@m3tech.com
+            // 'user[UserPassword]':'b569d2dc',
+            // 'newPassowrd':'b569d2dc',
+            // 'newPasswordConfirm':'b569d2dc',//B569D2DC
+            // 'last4SS':'4797',
+            // 'dob':'04/28/1966'
+            user: {
+              UserName: $scope.registration.username,
+              UserPassword: $scope.registration.passwordOld,
+            },
+            newPassowrd: $scope.registration.passwordNew,
+            newPasswordConfirm: $scope.registration.passwordComfirm,
+            last4SS: $scope.registration.last4ss,
+            dob: $scope.registration.birthday
+
+          }
+        }).then(function(response){
+          if (response.statusText && response.statusText === 'OK') {
+            $rootScope.$broadcast('setAlert', 'You are successfully registered');
+            $rootScope.user = {
+              UserName: $scope.registration.username,
+              UserPassword: $scope.registration.passwordNew
+            };
+            $cookies.put('login', $scope.registration.username);
+            $cookies.put('pass', $scope.registration.passwordNew);
+            $location.path('/policies');
+          } else {
+            $rootScope.$broadcast('setAlert', 'The data you entered is incorrect.', 'error');
+          }
+        });
+
       } else {
         $rootScope.$broadcast('setAlert', 'Please, fill in the form correctly', 'error');
       }

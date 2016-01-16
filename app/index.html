@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="benefitsApp" ng-controller="AppCtrl">
+  <body ng-app="PoliciesApp" ng-controller="AppCtrl">
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -33,7 +33,7 @@
               <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="#/">benefits</a>
+            <a class="navbar-brand" href="#/">Policies</a>
           </div>
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
@@ -41,20 +41,18 @@
             <ul class="nav navbar-nav">
               <li ng-class="getClass('/')"><a href="#/">Home</a></li>
               <li ng-class="getClass('/register')"><a ng-href="#/register">Registration</a></li>
-              <li ng-class="getClass('/login')"><a ng-href="#/login">Login</a></li>
               <li ng-class="getClass('/address')"><a ng-href="#/address">Edit address</a></li>
-              <li ng-class="getClass('/benefits')"><a ng-href="#/benefits">Benefits</a></li>
-              <li ng-class="getClass('/benefit')"><a ng-href="#/benefit">Single benefit</a></li>
+              <li ng-class="getClass('/policies')"><a ng-href="#/policies">Policies</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li ng-show="owner"><span class="username">Hello, {{owner.FirstName}}</span></li>
+              <li ng-show="user"><a ng-click="logout()">Logout</a></li>
+              <li ng-hide="user"><a ng-href="#/login">Login</a></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
-    <div class="alert alert-main alert-{{alertClass}}" ng-show="alertMessage">
-      <a class="close" ng-click="clearAlert()" aria-label="close">&times;</a>
-      {{alertMessage}}
-    </div>
-
 
     <div class="container">
     <div ng-view=""></div>
@@ -78,6 +76,7 @@
     <script src="bower_components/angular-soap/angular.soap.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -93,8 +92,9 @@
         <script src="scripts/directives/conformity.js"></script>
         <script src="scripts/directives/date.js"></script>
         <script src="scripts/controllers/app.js"></script>
-        <script src="scripts/controllers/benefits.js"></script>
-        <script src="scripts/controllers/benefit.js"></script>
+        <script src="scripts/controllers/policies.js"></script>
+        <script src="scripts/controllers/policy.js"></script>
+        <script src="scripts/controllers/alert-message.js"></script>
         <!-- endbuild -->
 </body>
 </html>

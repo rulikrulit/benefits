@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name benefitsApp.wsdl
+ * @name PoliciesApp.wsdl
  * @description
  * # wsdl
- * Service in the benefitsApp.
+ * Service in the PoliciesApp.
  */
-angular.module('benefitsApp')
+angular.module('PoliciesApp')
 
   .service('wsdl', ['$http', '$q', '$rootScope', function($http, $q, $rootScope){
 
@@ -52,7 +52,7 @@ angular.module('benefitsApp')
       requestData.data = requestData.data || {};
 
       if (request.method === "GET") {
-        request.url += serialize(requestData.data);
+        request.url += '?data=' + JSON.stringify(requestData.data);
       } else {
         request.data = requestData.data;
         request.headers = {'Content-Type': 'application/x-www-form-urlencoded'};
