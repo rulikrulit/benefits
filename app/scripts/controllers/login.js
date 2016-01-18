@@ -60,17 +60,17 @@ angular.module('PoliciesApp')
             UserName: $scope.login.username,
             UserPassword: $scope.login.passwordOld
           };
-          $cookies.put('login', $scope.login.username);
-          $cookies.put('pass', $scope.login.passwordOld);
+          // $cookies.put('login', $scope.login.username);
+          // $cookies.put('pass', $scope.login.passwordOld);
           $location.path('/home');
-          wsdl('app', 'GetPolicyOwnerPersonalInfo', {
-            data: {
-              user: $rootScope.user
-            }
-          }).then(function(response){
-            $rootScope.owner = response.data.GetPolicyOwnerPersonalInfoResult;
-            console.log('owner', $rootScope.owner);
-          });
+          // wsdl('app', 'GetPolicyOwnerPersonalInfo', {
+          //   data: {
+          //     user: $rootScope.user
+          //   }
+          // }).then(function(response){
+          //   $rootScope.owner = response.data.GetPolicyOwnerPersonalInfoResult;
+          //   console.log('owner', $rootScope.owner);
+          // });
             // if (response.data && response.data.IsUserAuthenticatedResult) {
             //   $rootScope.$broadcast('setAlert', response.data.IsUserAuthenticatedResult, 'error');
             // } else {
