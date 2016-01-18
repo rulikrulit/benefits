@@ -29,14 +29,14 @@ angular.module('PoliciesApp')
       }).then(function(response){
       $scope.policy = response.data.GetPolicyResult;
       $scope.policyReady = true;
-      wsdl('app', 'GetPolicyPaymentsLastYear', {
-        data: {
-          user: $rootScope.user,
-          policyID: $scope.policyId
-        }
-      }).then(function(response){
-        $scope.policyPayments = response.data.GetPolicyPaymentsLastYearResult.PolicyPayment;
-        $scope.policyPaymentsReady = true;
-      });
+    });
+    wsdl('app', 'GetPolicyPaymentsLastYear', {
+      data: {
+        user: $rootScope.user,
+        policyID: $scope.policyId
+      }
+    }).then(function(response){
+      $scope.policyPayments = response.data.GetPolicyPaymentsLastYearResult.PolicyPayment;
+      $scope.policyPaymentsReady = true;
     });
   }]);
