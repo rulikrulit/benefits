@@ -116,9 +116,9 @@
     </thead>
     <tbody>
       <tr ng-repeat="payment in policyPayments">
-        <td>{{payment.PaymentDate | date:'MM/dd/yyyy HH:mm'}}</td>
+        <td>{{payment.PaymentDate | date:'dd/MM/yyyy'}}</td>
         <td>{{payment.PaymentAmount | currency}}</td>
-        <td>{{payment.Type}}</td>
+        <td>{{(payment.Type === 'PayrollDeduction') ? 'Payroll Deduction' : payment.Type}}</td>
       </tr>
     </tbody>
   </table>
