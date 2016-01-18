@@ -7,12 +7,6 @@
  -->
   <div class="panel-body" ng-show="policyReady">
     <p><strong class="blue">{{policy.PolicySubscriberName}}</strong></p>
-    <p>
-      <a href="#/premiums">Collected Premiums Last Year</a>
-    </p>
-    <p>
-      <a href="#/service">Request Policy Service</a>
-    </p>
   </div>
 </div>
 <table class="table table-hover" ng-show="policyReady">
@@ -83,10 +77,10 @@
   </tr>
   <tr>
     <td>
-      Last Payment  Date
+      Last Payment Date
     </td>
     <td>
-     {{policy.LastPaymentAmount}}
+     {{policy.LastPaymentDate | date:'MM/dd/yyyy'}}
     </td>
   </tr>
 
@@ -125,5 +119,6 @@
 </table>
 <div ng-hide="policyReady">Loading policy...</div>
 <div class="form-group">
-  <a class="btn btn-info" ng-show="policyReady" href="#/payments/{{policy.PolicyID}}">View payments</a>
+  <a class="btn btn-info" ng-show="policyReady" href="#/payments/{{policy.PolicyID}}">Collected Premiums Last Year</a>
+  <a class="btn btn-info" href="#/service">Request Policy Service</a>
 </div>
