@@ -103,34 +103,38 @@ module.exports = function (grunt) {
                 var data, method;
                 if(req.url.indexOf('/app') === 0) {
                   data = url.parse(req.url, true);
-                  method = req.url.match(/^\/app\/([^#?]*)/)[1];
-                  soap.createClient(appUrl, function(err, client) {
-                      console.log('got client');
-                      client[method](JSON.parse(data.query.data), function(err, result) {
-                      // client[method]({
-                      //   user: {
-                      //     UserName: 'Boris@M3tech.com',
-                      //     UserPassword: 'b569d2dc'
-                      //   }
-                      // }, function(err, result) {
-                          console.log('got result', err, result);
-                          res.writeHead(200, { 'Content-Type': 'application/json' });
-                          res.write(JSON.stringify(result));
-                          res.end();
-                          next();
-                      });
-                  });
+                  if (req.url.match(/^\/app\/([^#?]*)/) && req.url.match(/^\/app\/([^#?]*)/).length > 0) {
+                    method = req.url.match(/^\/app\/([^#?]*)/)[1];
+                    soap.createClient(appUrl, function(err, client) {
+                        console.log('got client');
+                        client[method](JSON.parse(data.query.data), function(err, result) {
+                        // client[method]({
+                        //   user: {
+                        //     UserName: 'Boris@M3tech.com',
+                        //     UserPassword: 'b569d2dc'
+                        //   }
+                        // }, function(err, result) {
+                            console.log('got result', err, result);
+                            res.writeHead(200, { 'Content-Type': 'application/json' });
+                            res.write(JSON.stringify(result));
+                            res.end();
+                            next();
+                        });
+                    });
+                  }
                 } else if(req.url.indexOf('/zip') === 0) {
                   data = url.parse(req.url, true);
-                  method = req.url.match(/^\/zip\/([^#?]*)/)[1];
-                  soap.createClient(zipUrl, function(err, client) {
-                      client[method](JSON.parse(data.query.data), function(err, result) {
-                          res.writeHead(200, { 'Content-Type': 'application/json' });
-                          res.write(JSON.stringify(result));
-                          res.end();
-                          next();
-                      });
-                  });
+                  if (req.url.match(/^\/zip\/([^#?]*)/) && req.url.match(/^\/zip\/([^#?]*)/).length > 0) {
+                    method = req.url.match(/^\/zip\/([^#?]*)/)[1];
+                    soap.createClient(zipUrl, function(err, client) {
+                        client[method](JSON.parse(data.query.data), function(err, result) {
+                            res.writeHead(200, { 'Content-Type': 'application/json' });
+                            res.write(JSON.stringify(result));
+                            res.end();
+                            next();
+                        });
+                    });
+                  }
                 }
               }
             ];

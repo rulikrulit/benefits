@@ -41,8 +41,8 @@
             <ul class="nav navbar-nav">
               <li ng-class="getClass('/')"><a href="#/">Home</a></li>
               <li ng-class="getClass('/register')"><a ng-href="#/register">Registration</a></li>
-              <li ng-class="getClass('/address')"><a ng-href="#/address">Edit address</a></li>
-              <li ng-class="getClass('/policies')"><a ng-href="#/policies">Policies</a></li>
+              <li ng-show="owner" ng-class="getClass('/address')"><a ng-href="#/address">Edit address</a></li>
+              <li ng-show="owner" ng-class="getClass('/policies')"><a ng-href="#/policies">Policies</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li class="hidden-md-down" ng-show="owner"><span class="username">Hello, {{owner.FirstName}}</span></li>
