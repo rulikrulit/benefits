@@ -19,24 +19,29 @@ angular.module('PoliciesApp')
             }
           }
         }).then(function(response){
-          console.log('login', response);
-          $rootScope.$broadcast('setAlert', 'You are successfully logged in');
-          $rootScope.user = {
-            UserName: $scope.login.username,
-            UserPassword: $scope.login.passwordOld
-          };
-          $cookies.put('login', $scope.login.username);
-          $cookies.put('pass', $scope.login.passwordOld);
-          $location.path('/policies');
-          wsdl('app', 'GetPolicyOwnerPersonalInfo', {
-            data: {
-              user: $rootScope.user
+          if (response.data && response.data.IsUserAuthenticatedResult) {
+            if (response.data.IsUserAuthenticatedResult === 'Authenticated') {
+              $rootScope.$broadcast('setAlert', 'You are successfully logged in');
+              $rootScope.user = {
+                UserName: $scope.login.username,
+                UserPassword: $scope.login.passwordOld
+              };
+              $cookies.put('login', $scope.login.username);
+              $cookies.put('pass', $scope.login.passwordOld);
+              $location.path('/policies');
+              wsdl('app', 'GetPolicyOwnerPersonalInfo', {
+                data: {
+                  user: $rootScope.user
+                }
+              }).then(function(response){
+                $rootScope.owner = response.data.GetPolicyOwnerPersonalInfoResult;
+              });
+            } else {
+              $rootScope.$broadcast('setAlert', response.data.IsUserAuthenticatedResult, 'error');
             }
-          }).then(function(response){
-            $rootScope.owner = response.data.GetPolicyOwnerPersonalInfoResult;
-            console.log('owner', $rootScope.owner);
-          });
-
+          } else {
+            $rootScope.$broadcast('setAlert', 'Service is temporarly unavailable', 'error');
+          }
         });
 
       } else {
