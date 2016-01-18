@@ -47,7 +47,7 @@
       Coverage
     </td>
     <td>
-     {{policy.PolicyCoverage | currency}}
+     <span ng-hide="policy.PolicyCoverage == 0">{{policy.PolicyCoverage | currency}}</span>
     </td>
   </tr>
   <tr>
