@@ -50,7 +50,8 @@ angular.module('PoliciesApp')
     };
 
     $scope.resetPassword = function() {
-      if ($scope.form_login.$valid) {
+      console.log($scope.form_login);
+      if ($scope.form_login.login_username.$valid) {
         wsdl('app', 'RequestResetPassword', {
           data: {
             user: {
