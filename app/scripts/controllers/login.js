@@ -61,7 +61,7 @@ angular.module('PoliciesApp')
           }
         }).then(function(response){
           console.log('reset', response);
-          $rootScope.$broadcast('setAlert', 'You password reset request has been submitted successfully');
+          $rootScope.$broadcast('setAlert', 'You password reset request has been submitted successfully. Please, check you email for a new password.');
           $rootScope.user = {
             UserName: $scope.login.username,
             UserPassword: $scope.login.passwordOld
