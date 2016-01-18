@@ -10,11 +10,14 @@
 angular.module('PoliciesApp')
   .controller('AddressCtrl', ['$scope', '$rootScope', '$location', 'wsdl', function ($scope, $rootScope, $location, wsdl) {
     $scope.addressFound = false;
+    $scope.loadingZip = false;
     $scope.checkZip = function() {
       if ($scope.address && $scope.address.zip && $scope.address.zip.match(/^\d{5}$/)) {
         $scope.form_address.address_zip.$setValidity('existingZip', undefined);
+        $scope.loadingZip = true;
         wsdl('zip', 'GetInfoByZIP', {data: {USZip: $scope.address.zip}})
           .then(function(data){
+            $scope.loadingZip = false;
             if (data.data.GetInfoByZIPResult && data.data.GetInfoByZIPResult.NewDataSet && data.data.GetInfoByZIPResult.NewDataSet.Table) {
               $scope.form_address.address_zip.$setValidity('existingZip', true);
               $scope.address.city = data.data.GetInfoByZIPResult.NewDataSet.Table.CITY;
