@@ -45,7 +45,7 @@
               <li ng-class="getClass('/policies')"><a ng-href="#/policies">Policies</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li ng-show="owner"><span class="username">Hello, {{owner.FirstName}}</span></li>
+              <li class="hidden-md-down" ng-show="owner"><span class="username">Hello, {{owner.FirstName}}</span></li>
               <li ng-show="user"><a ng-click="logout()">Logout</a></li>
               <li ng-hide="user"><a ng-href="#/login">Login</a></li>
             </ul>
@@ -94,7 +94,9 @@
         <script src="scripts/controllers/app.js"></script>
         <script src="scripts/controllers/policies.js"></script>
         <script src="scripts/controllers/policy.js"></script>
+        <script src="scripts/controllers/payments.js"></script>
         <script src="scripts/controllers/alert-message.js"></script>
+        <script src="scripts/controllers/reset-password.js"></script>
         <!-- endbuild -->
 </body>
 </html>

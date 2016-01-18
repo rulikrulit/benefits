@@ -8,7 +8,7 @@
  * Controller of the PoliciesApp
  */
 angular.module('PoliciesApp')
-  .controller('RegistrationCtrl', ['$scope', '$rootScope', '$location', 'wsdl', function ($scope, $rootScope, $location, wsdl) {
+  .controller('RegistrationCtrl', ['$scope', '$rootScope', '$location', '$cookies', 'wsdl', '$filter', function ($scope, $rootScope, $location, $cookies, wsdl, $filter) {
 
     $scope.maxDate = new Date();
 
@@ -43,7 +43,7 @@ angular.module('PoliciesApp')
             newPassowrd: $scope.registration.passwordNew,
             newPasswordConfirm: $scope.registration.passwordComfirm,
             last4SS: $scope.registration.last4ss,
-            dob: $scope.registration.birthday
+            dob: $filter('date')($scope.registration.birthday, 'yyyy-MM-dd')
 
           }
         }).then(function(response){

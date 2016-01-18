@@ -40,6 +40,11 @@ angular
         controller: 'LoginCtrl',
         controllerAs: 'login'
       })
+      .when('/reset-password', {
+        templateUrl: 'views/reset-password.html',
+        controller: 'ResetPasswordCtrl',
+        controllerAs: 'reset_password'
+      })
       .when('/address', {
         templateUrl: 'views/address.html',
         controller: 'AddressCtrl',
@@ -54,6 +59,17 @@ angular
         templateUrl: 'views/policy.html',
         controller: 'PolicyCtrl',
         controllerAs: 'policy'
+      })
+      .when('/payments/:id', {
+        templateUrl: 'views/payments.html',
+        controller: 'PaymentsCtrl',
+        controllerAs: 'payments'
+      })
+      .when('/service', {
+        templateUrl: 'views/service.html'
+      })
+      .when('/premiums', {
+        templateUrl: 'views/premiums.html'
       })
       .otherwise({
         redirectTo: '/'

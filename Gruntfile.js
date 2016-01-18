@@ -124,7 +124,7 @@ module.exports = function (grunt) {
                   data = url.parse(req.url, true);
                   method = req.url.match(/^\/zip\/([^#?]*)/)[1];
                   soap.createClient(zipUrl, function(err, client) {
-                      client[method](data.query, function(err, result) {
+                      client[method](JSON.parse(data.query.data), function(err, result) {
                           res.writeHead(200, { 'Content-Type': 'application/json' });
                           res.write(JSON.stringify(result));
                           res.end();

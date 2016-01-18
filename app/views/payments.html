@@ -1,0 +1,125 @@
+<h1 class="page-title">Collected Premium Last Year</h1>
+<!-- <div class="panel panel-default" ng-show="ownerReady">
+  <div class="panel-body">
+    Hello, {{owner.FirstName}} {{owner.LastName}}.
+    Your Last4SS is {{owner.Last4SS}}.
+  </div>
+</div>
+<table class="table table-hover" ng-show="policyReady">
+  <tr>
+    <td>
+      DeductionAmount
+    </td>
+    <td>
+     {{policy.DeductionAmount}}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      DeductionMode
+    </td>
+    <td>
+     {{policy.DeductionMode}}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      DeductionType
+    </td>
+    <td>
+     {{policy.DeductionType}}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      LastPaymentAmount
+    </td>
+    <td>
+     {{policy.LastPaymentAmount}}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      PolicyCoverage
+    </td>
+    <td>
+     {{policy.PolicyCoverage}}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      PolicyEffDate
+    </td>
+    <td>
+     {{policy.PolicyEffDate | date:'MM/dd/yyyy HH:mm'}}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      PolicyID
+    </td>
+    <td>
+     {{policy.PolicyID}}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      PolicyProductName
+    </td>
+    <td>
+     {{policy.PolicyProductName}}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      PolicySubscriberName
+    </td>
+    <td>
+     {{policy.PolicySubscriberName}}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      PolicyWeeklyPremium
+    </td>
+    <td>
+     {{policy.PolicyWeeklyPremium}}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Status
+    </td>
+    <td>
+     {{policy.Status}}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Type
+    </td>
+    <td>
+     {{policy.Type}}
+    </td>
+  </tr>
+</table>
+<div ng-hide="policyReady">Loading policy...</div>
+ --><div ng-show="policyReady && !policyPaymentsReady">Loading payment info...</div>
+<section ng-show="policyPaymentsReady">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="payment in policyPayments">
+        <td>{{payment.PaymentDate | date:'MM/dd/yyyy HH:mm'}}</td>
+        <td>{{payment.PaymentAmount | currency}}</td>
+        <td>{{payment.Type}}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>

@@ -1,34 +1,38 @@
 <h1 class="page-title">Policies</h1>
-<p ng-hide="ownerReady || addressFound">Loading...</p>
+<!-- <p ng-hide="ownerReady || addressFound">Loading...</p>
 <p ng-show="ownerReady">
   Hello, {{owner.FirstName}} {{owner.LastName}}.
   Your Last4SS is {{owner.Last4SS}}.
 </p>
+ -->
+<p>Policy holder: <strong class="blue">{{policies[0].PolicySubscriberName}}</strong></p>
+
 <div class="panel panel-default" ng-show="addressFound">
   <div class="panel-body">
-    <p>Address: <span>{{addressData.Address1}}</span>, <span>{{addressData.AddressCity}}</span>, <span>{{addressData.AddressState}}</span></p>
-    <p>Zip: {{addressData.AddressZip}}</p>
+    <p>{{addressData.Address1}}</p>
+    <p ng-show="addressData.Address2">{{addressData.Address2}}</p>
+    <p><span>{{addressData.AddressCity}}</span> <span>{{addressData.AddressState}}</span>, {{addressData.AddressZip}}</p>
     <a href="#/address">Edit</a>
   </div>
 </div>
 <table class="table table-hover" ng-show="policyReady">
   <tr>
-    <th>ID</th>
+    <th>Product</th>
+    <th>Policy</th>
     <th>Status</th>
-    <th>Type</th>
-    <th>Amount</th>
+    <th>Effective Date</th>
   <tr ng-repeat="policy in policies" class="pointer" ng-click="openPolicy(policy.PolicyID)">
     <td>
-     {{policy.PolicyID}}
+      {{policy.PolicyProductName}}
     </td>
     <td>
-     {{policy.Status}}
+     {{policy.PolicyNo}}
+    </td>
+    <td class="green">
+     {{(policy.Status === 'InForce') ? 'In-Force' : policy.Status}}
     </td>
     <td>
-     {{policy.DeductionType}}
-    </td>
-    <td>
-     {{policy.DeductionAmount}}
+     {{policy.PolicyEffDate | date : 'MM/dd/yyyy'}}
     </td>
   </tr>
 </table>

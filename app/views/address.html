@@ -1,8 +1,9 @@
 <h1 class="page-title">Edit address</h1>
 <div class="panel panel-default">
   <div class="panel-body" ng-show="addressFound">
-    <p>Address: <span>{{addressData.Address1}}</span>, <span>{{addressData.AddressCity}}</span>, <span>{{addressData.AddressState}}</span></p>
-    <p>Zip: {{addressData.AddressZip}}</p>
+    <p>{{addressData.Address1}}</p>
+    <p ng-show="addressData.Address2">{{addressData.Address2}}</p>
+    <p><span>{{addressData.AddressCity}}</span> <span>{{addressData.AddressState}}</span>, {{addressData.AddressZip}}</p>
   </div>
   <div class="panel-body" ng-hide="addressFound">
     Checking your current address...
